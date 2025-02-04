@@ -4,6 +4,7 @@ use cybot\cookiebot\settings\templates\Header;
 use cybot\cookiebot\settings\templates\Main_Tabs;
 
 use cybot\cookiebot\settings\pages\Settings_Page;
+use cybot\cookiebot\lib\Cookiebot_WP;
 
 /**
  * @var string $cbid
@@ -20,104 +21,211 @@ $main_tabs = new Main_Tabs();
 $header->display();
 ?>
 <div class="cb-body">
-	<div class="cb-wrapper">
-		<?php $main_tabs->display( 'dashboard' ); ?>
-		<div class="cb-main__content <?php echo $cbid ? 'sync-account' : 'no-account'; ?>">
-			<div class="cb-main__dashboard__card--container">
-				<div class="cb-main__dashboard__card">
-					<div class="cb-main__card__inner account_card">
-						<div class="cb-main__card__content">
-							<h2 class="cb-main__card__title">
-								<?php echo esc_html__( 'I already have an account', 'cookiebot' ); ?>
-							</h2>
-							<a href="<?php echo esc_url( add_query_arg( 'page', Settings_Page::ADMIN_SLUG, admin_url( 'admin.php' ) ) ); ?>"
-								class="cb-btn cb-main-btn">
-								<?php echo esc_html__( 'Connect my account', 'cookiebot' ); ?>
-							</a>
-						</div>
-					</div>
-				</div>
-
-				<div class="cb-main__dashboard__card">
-					<div class="cb-main__card__inner  <?php echo $cbid ? 'start_card' : 'new_card'; ?>">
-						<div class="cb-main__card__content">
-							<p class="cb-main__card__label">
-								<?php echo esc_html__( 'Get started', 'cookiebot' ); ?>
-							</p>
-							<h2 class="cb-main__card__title">
-								<?php echo esc_html__( 'New to our solutions? Create your account. ', 'cookiebot' ); ?>
-							</h2>
-							<a href="https://account.usercentrics.eu/?trial=standard&uc_subscription_type=web&pricing_plan=FreeExtended&utm_source=wordpress&utm_medium=referral&utm_campaign=banner"
-								target="_blank" class="cb-btn cb-white-btn" rel="noopener">
-								<?php echo esc_html__( 'Create a new account', 'cookiebot' ); ?>
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="cb-main__dashboard__card--container-full">
-				<div class="cb-main__dashboard__card">
-					<div class="cb-main__card__inner start_card">
-						<div class="cb-main__card--content">
-							<h2 class="cb-main__card__title">
-								<?php echo esc_html__( 'How to get started', 'cookiebot' ); ?>
-							</h2>
-							<a href="https://support.cookiebot.com/hc/en-us/articles/360003784174-Installing-Cookiebot-CMP-on-WordPress"
-								target="_blank" class="cb-btn cb-link-btn" rel="noopener">
-								<?php echo esc_html__( 'Learn more about your CMP', 'cookiebot' ); ?>
-							</a>
-						</div>
-					</div>
-				</div>
-			</div>
-
-			<div class="cb-main__dashboard__card--container">
-				<div class="cb-main__dashboard__card">
-				</div>
-				<div class="cb-main__dashboard__card">
-					<div class="cb-main__card__inner legislations_card">
-						<div class="cb-main__legislation__item">
-							<div class="cb-main__legislation____icon">
-								<img src="<?php echo esc_html( $europe_icon ); ?>" alt="GDPR">
-							</div>
-							<div class="cb-main__legislation__name">
-								<?php echo esc_html__( 'GDPR', 'cookiebot' ); ?>
-							</div>
-							<div class="cb-main__legislation__region">
-								<?php echo esc_html__( 'Europe', 'cookiebot' ); ?>
-							</div>
-							<a href="https://support.cookiebot.com/hc/en-us/articles/360010952259-Using-Cookiebot-CMP-for-CCPA-CPRA-compliance" target="_blank"
-								class="cb-btn cb-link-btn external-icon legislation-link" rel="noopener">
-								<span><?php echo esc_html__( 'Learn More', 'cookiebot' ); ?></span>
-								<img src="<?php echo esc_html( $link_icon ); ?>"
-									alt="<?php echo esc_html__( 'Learn More', 'cookiebot' ); ?>">
-							</a>
-						</div>
-						<div class="cb-main__legislation__item">
-							<div class="cb-main__legislation____icon">
-								<img src="<?php echo esc_html( $usa_icon ); ?>" alt="CCPA">
-							</div>
-							<div class="cb-main__legislation__name">
-								<?php echo esc_html__( 'CCPA', 'cookiebot' ); ?>
-							</div>
-							<div class="cb-main__legislation__region">
-								<?php echo esc_html__( 'North America', 'cookiebot' ); ?>
-							</div>
-							<a href="https://support.cookiebot.com/hc/en-us/articles/360010952259-Using-Cookiebot-CMP-for-CCPA-CPRA-compliance" target="_blank"
-								class="cb-btn cb-link-btn external-icon legislation-link" rel="noopener">
-								<span><?php echo esc_html__( 'Learn More', 'cookiebot' ); ?></span>
-								<img src="<?php echo esc_html( $link_icon ); ?>"
-									alt="<?php echo esc_html__( 'Learn More', 'cookiebot' ); ?>">
-							</a>
-						</div>
-						<a href="https://support.cookiebot.com/hc/en-us/categories/360000349934-Regulations" target="_blank"
-							class="cb-btn cb-link-btn cb-right-btn" rel="noopener">
-							<?php echo esc_html__( 'See other legislations', 'cookiebot' ); ?>
-						</a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+    <div class="cb-wrapper">
+        <?php $main_tabs->display('dashboard'); ?>
+    </div>
 </div>
+
+<!-- Add modals at the end of the file -->
+<div id="login-modal" class="cb-modal">
+    <div class="cb-modal-content">
+        <div class="cb-modal-header">
+            <img src="<?php echo esc_url(CYBOT_COOKIEBOT_PLUGIN_URL . 'assets/images/cookiebot-logo.png'); ?>" alt="Cookiebot Logo" class="cb-modal-logo">
+        </div>
+        <div class="cb-modal-body split-layout">
+            <!-- Left side - Form -->
+            <div class="form-section">
+                <h2><?php echo esc_html__('Connect your account', 'cookiebot'); ?></h2>
+                <p class="cb-modal-description">
+                    <?php echo esc_html__('Enter the ID of your account to quickly connect it with the plugin.', 'cookiebot'); ?>
+                </p>
+                <form id="connect-form" class="cb-form" method="post" action="options.php">
+                    <?php settings_fields('cookiebot'); ?>
+                    <div class="cb-form-group">
+                        <input type="text" 
+                               id="cookiebot-cbid" 
+                               name="cookiebot-cbid"
+                               placeholder="Settings ID or Domain Group ID" 
+                               value="<?php echo esc_attr($cbid); ?>"
+                               required>
+                        <div class="cookiebot-cbid-check"></div>
+                    </div>
+                    <a href="https://support.usercentrics.com/hc/en-us/articles/18097606499100" target="_blank" class="help-link">
+                        <?php echo esc_html__('How to find your Usercentrics Settings ID', 'cookiebot'); ?>
+                    </a>
+                    <a href="https://support.cookiebot.com/hc/en-us/articles/4405643234194" target="_blank" class="help-link">
+                        <?php echo esc_html__('How to find your Cookiebot CMP Domain Group ID', 'cookiebot'); ?>
+                    </a>
+                    <button type="submit" id="connect-submit" class="cb-btn cb-main-btn cb-btn-full disabled">
+                        <?php echo esc_html__('Continue', 'cookiebot'); ?>
+                    </button>
+                </form>
+                <p class="cb-modal-footer">
+                    <?php echo esc_html__("Don't have an account?", 'cookiebot'); ?>
+                    <a href="#" id="switch-to-signup"><?php echo esc_html__('Create one here', 'cookiebot'); ?></a>
+                </p>
+            </div>
+            <!-- Right side - Trial Info -->
+            <div class="trial-section">
+                <h2>Start a <span class="highlight">14-Day Free</span><br>Trial today!</h2>
+                <p>Benefit from our premium trial period and get a consent banner in seconds. <a href="#" class="learn-more">Learn more</a></p>
+                <div class="banner-preview">
+                    <img src="<?php echo esc_url(CYBOT_COOKIEBOT_PLUGIN_URL . 'assets/images/banner-preview.png'); ?>" alt="Banner Preview">
+                </div>
+                <div class="trial-features">
+                    <h3>✨ Enjoy all premium features without risk ✨</h3>
+                    <ul>
+                        <li>💳 No credit card required</li>
+                        <li>⏰ Ends automatically after 14 days</li>
+                        <li>🔓 Access to all features</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="signup-modal" class="cb-modal">
+    <div class="cb-modal-content">
+        <div class="cb-modal-header">
+            <img src="<?php echo esc_url(CYBOT_COOKIEBOT_PLUGIN_URL . 'assets/images/cookiebot-logo.png'); ?>" alt="Cookiebot Logo" class="cb-modal-logo">
+            <span class="cb-modal-close">&times;</span>
+        </div>
+        <div class="cb-modal-body split-layout">
+            <!-- Left side - Form -->
+            <div class="form-section">
+                <h2><?php echo esc_html__('Create account', 'cookiebot'); ?></h2>
+                <p class="cb-modal-description">
+                    <?php echo esc_html__('Enter your domain, your email and set your password to sign up and have your banner live in seconds.', 'cookiebot'); ?>
+                </p>
+                <form id="signup-form" class="cb-form">
+                    <div class="cb-form-group">
+                        <label for="domain"><?php echo esc_html__('Domain', 'cookiebot'); ?></label>
+                        <input type="url" id="domain" name="domain" value="<?php echo esc_url(get_site_url()); ?>" required>
+                    </div>
+                    <div class="cb-form-group">
+                        <label for="email"><?php echo esc_html__('Email address', 'cookiebot'); ?></label>
+                        <input type="email" id="email" name="email" value="<?php echo esc_attr(get_option('admin_email')); ?>" required>
+                    </div>
+                    <div class="cb-form-group">
+                        <label for="password"><?php echo esc_html__('Password', 'cookiebot'); ?></label>
+                        <input type="password" id="password" name="password" required>
+                    </div>
+                    <button type="submit" class="cb-btn cb-main-btn cb-btn-full">
+                        <?php echo esc_html__('Continue', 'cookiebot'); ?>
+                    </button>
+                </form>
+                <p class="cb-modal-footer">
+                    <?php echo esc_html__('Already have an account?', 'cookiebot'); ?>
+                    <a href="#" id="switch-to-login">
+                        <?php echo esc_html__('Connect here', 'cookiebot'); ?>
+                    </a>
+                </p>
+            </div>
+            <!-- Right side - Trial Info -->
+            <div class="trial-section">
+                <h2>Start a <span class="highlight">14-Day Free</span><br>Trial today!</h2>
+                <p>Benefit from our premium trial period and get a consent banner in seconds. <a href="#" class="learn-more">Learn more</a></p>
+                <div class="banner-preview">
+                    <img src="<?php echo esc_url(CYBOT_COOKIEBOT_PLUGIN_URL . 'assets/images/banner-preview.png'); ?>" alt="Banner Preview">
+                </div>
+                <div class="trial-features">
+                    <h3>✨ Enjoy all the premium features ✨</h3>
+                    <ul>
+                        <li>💳 No credit card required</li>
+                        <li>⏰ Ends automatically after 14 days</li>
+                        <li>🔓 Access to all features</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const loginModal = document.getElementById('login-modal');
+    const signupModal = document.getElementById('signup-modal');
+    const switchToSignup = document.getElementById('switch-to-signup');
+    const switchToLogin = document.getElementById('switch-to-login');
+    const closeButtons = document.getElementsByClassName('cb-modal-close');
+    const mainContent = document.querySelector('.cb-body');
+
+    function openModal(modal) {
+        // Hide all modals first
+        loginModal.style.display = 'none';
+        signupModal.style.display = 'none';
+        // Then show the requested modal
+        modal.style.display = 'block';
+        mainContent.classList.add('modal-open');
+    }
+
+    function closeModal(modal) {
+        <?php if (empty($cbid)) : ?>
+            return; // Prevent closing if no CBID
+        <?php else : ?>
+            modal.style.display = 'none';
+            mainContent.classList.remove('modal-open');
+        <?php endif; ?>
+    }
+
+    // Hide close buttons if no CBID
+    <?php if (empty($cbid)) : ?>
+        Array.from(closeButtons).forEach(button => {
+            button.style.display = 'none';
+        });
+    <?php endif; ?>
+
+    switchToSignup.addEventListener('click', (e) => {
+        e.preventDefault();
+        openModal(signupModal);
+    });
+
+    switchToLogin.addEventListener('click', (e) => {
+        e.preventDefault();
+        openModal(loginModal);
+    });
+
+    <?php if (!empty($cbid)) : ?>
+        Array.from(closeButtons).forEach(button => {
+            button.addEventListener('click', () => {
+                closeModal(loginModal);
+                closeModal(signupModal);
+            });
+        });
+
+        window.addEventListener('click', (e) => {
+            if (e.target === loginModal) closeModal(loginModal);
+            if (e.target === signupModal) closeModal(signupModal);
+        });
+    <?php endif; ?>
+
+    // Auto-show signup modal on page load if no CBID
+    <?php if (empty($cbid)) : ?>
+        setTimeout(() => {
+            openModal(signupModal);
+        }, 100);
+    <?php endif; ?>
+
+    // CBID validation
+    const cbidInput = document.getElementById('cookiebot-cbid');
+    echo
+    const cbidCheck = document.querySelector('.cookiebot-cbid-check');
+    const submitButton = document.getElementById('connect-submit');
+});
+</script>
+
+<?php
+wp_enqueue_script(
+    'cookiebot-account',
+    CYBOT_COOKIEBOT_PLUGIN_URL . 'assets/js/backend/account.js',
+    array('jquery'),
+    Cookiebot_WP::COOKIEBOT_PLUGIN_VERSION,
+    true
+);
+
+wp_localize_script('cookiebot-account', 'cookiebot_account', array(
+    'nonce' => wp_create_nonce('cookiebot_create_account')
+));
+
+//settings ID length XxxXXXxx

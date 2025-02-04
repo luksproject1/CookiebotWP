@@ -11,11 +11,13 @@ use cybot\cookiebot\shortcode\Cookiebot_Embedding_Shortcode;
 use cybot\cookiebot\widgets\Dashboard_Widget_Cookiebot_Status;
 use DomainException;
 use RuntimeException;
+use cybot\cookiebot\lib\api\Account_API;
 
 class Cookiebot_WP {
 
 	const COOKIEBOT_PLUGIN_VERSION  = '4.4.1';
 	const COOKIEBOT_MIN_PHP_VERSION = '5.6.0';
+	const CYBOT_COOKIEBOT_VERSION   = '4.4.1';
 
 	/**
 	 * @var   Cookiebot_WP The single instance of the class
@@ -55,6 +57,7 @@ class Cookiebot_WP {
 		$this->cookiebot_init();
 		register_activation_hook( __FILE__, array( new Cookiebot_Activated(), 'run' ) );
 		register_deactivation_hook( __FILE__, array( new Cookiebot_Deactivated(), 'run' ) );
+		Account_API::register_ajax_handlers();
 	}
 
 	/**

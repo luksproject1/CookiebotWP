@@ -79,14 +79,15 @@
     display: block;
 }
 
-.cb-general__new__account, .cb-general__consent__mode, .cb-general__prior__consent {
+.cb-settings__tabs__content--item#general-settings .cb-settings__config__item:first-child {
+    margin-top: 50px;
+}
+
+.cb-general__new__account {
     background-color: #f1f1f1;
     border-radius: 15px;
     padding: 40px;
     margin-bottom: 50px;
-}
-
-.cb-general__new__account {
     margin-top: 50px;
 }
 
@@ -573,17 +574,6 @@ select#cookiebot-embedding, select#cookiebot-embedding-type {
     margin-bottom: 50px;
 }
 
-.cb-general__new__account--double .cb-main__card__inner.new_card {
-    display: grid;
-    align-self: stretch;
-    position: relative;
-    padding: 25px;
-    overflow: hidden;
-    background-color: #00C6FB;
-    color: #141414;
-    border-radius: 10px;
-}
-
 .cb-main__card__inner.new_card .cb-main__card__content {
     display: grid;
     grid-template-columns: 1fr minmax(86px, auto);
@@ -638,4 +628,26 @@ select#cookiebot-embedding, select#cookiebot-embedding-type {
     text-transform: uppercase;
     line-height: normal;
     padding: 0 10px;
+}
+
+/* Add overlay when no CBID */
+.cb-main__content.no-cbid {
+    position: relative;
+}
+
+.cb-main__content.no-cbid::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(255, 255, 255, 0.7);
+    z-index: 10;
+    pointer-events: none;
+}
+
+.cb-main__content.no-cbid form {
+    opacity: 0.5;
+    pointer-events: none;
 }

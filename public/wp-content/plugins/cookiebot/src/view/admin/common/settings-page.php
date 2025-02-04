@@ -23,7 +23,7 @@ $header->display();
 <div class="cb-body">
 	<div class="cb-wrapper">
 		<?php $main_tabs->display( 'settings' ); ?>
-		<div class="cb-main__content">
+		<div class="cb-main__content <?php echo empty($cbid) ? 'no-cbid' : ''; ?>">
 			<form method="post" action="options.php">
 				<?php settings_fields( 'cookiebot' ); ?>
 				<?php do_settings_sections( 'cookiebot' ); ?>
@@ -34,19 +34,6 @@ $header->display();
 				<div class="cb-settings__tabs__content">
 					<div class="cb-settings__tabs__content--item active-item"
 						id="general-settings">
-						<div class="cb-general__new__account">
-							<h2 class="cb-general__info__title"><?php esc_html_e( 'New to our solutions? Create your account. ', 'cookiebot' ); ?></h2>
-							<p class="cb-general__info__text">
-								<?php esc_html_e( 'If you’re new to our solutions, create an account first to obtain your settings ID.', 'cookiebot' ); ?>
-							</p>
-							<div class="new-account-actions">
-								<a href="https://account.usercentrics.eu/?trial=standard&uc_subscription_type=web&pricing_plan=FreeExtended&utm_source=wordpress&utm_medium=referral&utm_campaign=banner"
-									target="_blank" class="cb-btn cb-main-btn" rel="noopener">
-									<?php esc_html_e( 'Create your account', 'cookiebot' ); ?>
-								</a>
-							</div>
-						</div>
-
 						<div class="cb-settings__config__item">
 							<div class="cb-settings__config__content">
 								<h3 class="cb-settings__config__subtitle">
@@ -90,7 +77,7 @@ $header->display();
 						<div id="cookiebot-ruleset-id-selector" class="cb-settings__config__item hidden">
 							<div class="cb-settings__config__content">
 								<p class="cb-general__info__text">
-									<?php esc_html_e( 'Let us know if your account is set for compliance with a single privacy law (e.g. GDPR) or multiple laws (e.g. GDPR and CCPA) based on user’s location. The default is a single privacy law, so this is likely your setting unless modified.', 'cookiebot' ); ?>
+									<?php esc_html_e( "Let us know if your account is set for compliance with a single privacy law (e.g. GDPR) or multiple laws (e.g. GDPR and CCPA) based on user's location. The default is a single privacy law, so this is likely your setting unless modified.", 'cookiebot' ); ?>
 								</p>
 							</div>
 							<div class="cb-settings__config__data">

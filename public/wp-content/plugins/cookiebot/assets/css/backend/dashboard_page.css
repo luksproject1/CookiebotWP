@@ -407,3 +407,238 @@
 .cb-btn.cb-white-btn:hover {
     background-color: #f1f1f1; /* Light gray on hover */
 }
+
+/* Modal Styles */
+.cb-modal {
+    position: fixed;
+    top: 32px; /* WordPress admin bar height */
+    left: 160px; /* WordPress admin menu width */
+    width: calc(100% - 160px); /* Full width minus admin menu */
+    height: calc(100vh - 32px); /* Full height minus admin bar */
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 999999;
+    backdrop-filter: blur(4px);
+    display: none;
+    overflow-y: scroll;
+}
+
+.cb-modal-content {
+    position: relative;
+    background-color: #fff;
+    width: 95%;
+    max-width: 1000px;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 10vh auto; /* Adjust top margin */
+    overflow: hidden;
+}
+
+.cb-modal-header {
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cb-modal-logo {
+    height: 30px;
+}
+
+.cb-modal-close {
+    font-size: 24px;
+    font-weight: bold;
+    color: #666;
+    cursor: pointer;
+}
+
+.cb-modal-close:hover {
+    color: #333;
+}
+
+.cb-modal-body {
+    padding: 0;
+}
+
+.cb-modal-body h2 {
+    margin: 0;
+    font-size: 24px;
+    color: #333;
+}
+
+.cb-modal-description {
+    color: #666;
+    margin: 0;
+}
+
+.cb-modal-footer {
+    text-align: center;
+    margin: 20px 0 0;
+    color: #666;
+}
+
+.cb-modal-footer a {
+    color: #0052CC;
+    text-decoration: none;
+}
+
+.cb-modal-footer a:hover {
+    text-decoration: underline;
+}
+
+.cb-btn-full {
+    width: 100%;
+}
+
+/* Add blur effect container */
+.cb-body {
+    transition: filter 0.3s ease;
+}
+
+.cb-body.modal-open {
+    filter: blur(4px);
+}
+
+/* Update modal layout */
+.split-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding: 40px !important;
+    gap: 40px;
+}
+
+.form-section {
+    border-right: 1px solid #eee;
+    padding-right: 40px;
+}
+
+.trial-section {
+    padding-left: 20px;
+}
+
+/* Adjust trial section spacing */
+.trial-section h2 {
+    font-size: 32px !important;
+    line-height: 1.2;
+    color: #000;
+    margin: 0 0 16px !important;
+}
+
+/* Banner preview container */
+.banner-preview {
+    margin: 30px 0;
+}
+
+.banner-preview img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+}
+
+/* Form styling updates */
+.cb-form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 500;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+.cb-form-group input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+/* Button styling */
+.cb-btn.cb-main-btn.cb-btn-full {
+    background-color: #0047FF;
+    padding: 12px;
+    margin-top: 10px;
+    border-radius: 4px;
+}
+
+/* Trial section updates */
+.trial-section .highlight {
+    color: #0047FF;
+    text-decoration: underline;
+    text-decoration-color: #66A1FF;
+}
+
+.trial-features {
+    background-color: #000;
+    border-radius: 8px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.trial-features h3 {
+    text-align: center;
+    color: white;
+    font-size: 16px;
+    margin-bottom: 20px;
+}
+
+.trial-features ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.trial-features li {
+    color: white;
+    margin-bottom: 10px;
+    font-size: 14px;
+}
+
+/* Footer link styling */
+.cb-modal-footer {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.cb-modal-footer a {
+    color: #0047FF;
+    text-decoration: none;
+}
+
+/* Add responsive adjustments for folded menu */
+@media screen and (max-width: 960px) {
+    .cb-modal {
+        left: 36px; /* WordPress folded menu width */
+        width: calc(100% - 36px);
+    }
+}
+
+/* Adjust for mobile view */
+@media screen and (max-width: 782px) {
+    .cb-modal {
+        top: 46px; /* WordPress mobile admin bar height */
+        left: 0;
+        width: 100%;
+        height: calc(100vh - 46px);
+    }
+}
+
+.help-link {
+    display: block;
+    color: #0047FF;
+    text-decoration: none;
+    margin-bottom: 10px;
+}
+
+.help-link:hover {
+    text-decoration: underline;
+}
+
+.form-section input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    font-size: 14px;
+    margin-bottom: 20px;
+}
