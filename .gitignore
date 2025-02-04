@@ -1,0 +1,7 @@
+plugin-sources
+.DS_Store
+tmp
+.idea/
+.vscode/
+cybot-cookiebot-*.zip
+/tests/vendor/
